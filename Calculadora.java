@@ -12,17 +12,18 @@ package zcle_01;
 public class Calculadora {
     double num1;
     double num2;
-    double res;
-    String operador;
-    public double sumar(){
-        res=num1+num2;
-        return res;
-    };
-    public double potencia(){
-        res=1;
-    for (int contador=0;contador<num2;contador++){
-        res*=num1;
-    }
-    return res;
-    };
-}
+    double res=0;
+    char operador;
+        public Calculadora(double _n1, double _n2, char _operador){
+        this.num1=_n1;
+        this.num2=_n2;
+        this.operador=_operador;
+        }
+        public void imprimirResultado()
+        {
+          System.out.println(
+                  this.num1+" "+this.operador+" "+this.num2+" = "+this.res
+                            );
+        };
+        };
+
