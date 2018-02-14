@@ -6,7 +6,11 @@
 package zcle_01;
 import java.util.Scanner;
 /**
- *
+ *Universidad De La Salle Bajio
+ * Ingenieria en Sistemas y Software Computacionales
+ * Alumno:Luis Edgar Zanella Contreras
+ * Matricula:65402
+ * Descripción:Calculadora
  * @author Luis
  */
 public class ZCLE_01 {
@@ -16,39 +20,81 @@ public class ZCLE_01 {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+       //ATENCION NO ESTA VALIDADO
         Scanner console = new Scanner(System.in);
         String sTexto;
         String[] split;
         String delimitador = "((?<=%1$s)|(?=%1$s))";
+        double resultado;
+        //Imprimir texto
+            System.out.println("Introduzca una operación: ejemplo(2+3)o(2*2*2*5*6) y presione ENTER");
+        //Recepcion de datos
             sTexto = console.next();
             split = sTexto.split(String.format(delimitador,"\\-|\\*|\\^|\\/|\\+"));
-            for(int i=0;i<split.length;i=i+3){
-                if((split[i+1])!=null)
-                {
-                    switch (split[i+1]){
+        //Llamar funcion y enviar el arreglo
+            resultado=calculo(split);
+        //Imprimir resultado de la funcion
+            System.out.println(resultado);
+    }
+    public static double calculo(String []split){
+                double resultado=0;
+                    for(int i=0;i<split.length;i++){
+                if(i-1>=0){
+                    switch (split[i-1]){
+                        case "-":
+                            Resta res= new Resta(Double.parseDouble(split[i]),resultado);
+                            resultado= res.res;
+                            break;
+                        case "+":
+                            Suma sum= new Suma(Double.parseDouble(split[i]),resultado);                            
+                            resultado= sum.res;
+                            break;
+                        case "*":
+                            Multiplicacion mul= new Multiplicacion(Double.parseDouble(split[i]),resultado);                  
+                            resultado=mul.res;
+                            break;
+                        case "/":
+                            Division div= new Division(Double.parseDouble(split[i]),resultado);                            
+                            resultado=div.res;
+                            break;
+                        case "^":
+                            Potencia pot= new Potencia(Double.parseDouble(split[i]),resultado);
+                            resultado=pot.res;
+                            break;
+                        default:
+                            break;
+                     
+                    }
+                }
+                else{
+                     switch (split[i+1]){
                         case "-":
                             Resta res= new Resta(Double.parseDouble(split[i]),Double.parseDouble(split[i+2]));
-                            res.imprimirResultado();
+                            resultado= res.res;
                             break;
                         case "+":
                             Suma sum= new Suma(Double.parseDouble(split[i]),Double.parseDouble(split[i+2]));                            
-                            sum.imprimirResultado();
+                            resultado= sum.res;
                             break;
                         case "*":
                             Multiplicacion mul= new Multiplicacion(Double.parseDouble(split[i]),Double.parseDouble(split[i+2]));                  
-                            mul.imprimirResultado();
+                            resultado=mul.res;
                             break;
-                        case "/":
+                        case "/":                         
                             Division div= new Division(Double.parseDouble(split[i]),Double.parseDouble(split[i+2]));                            
-                            div.imprimirResultado();
+                            resultado=div.res;
                             break;
-                        case "^":
+                        case "^":                         
                             Potencia pot= new Potencia(Double.parseDouble(split[i]),Double.parseDouble(split[i+2]));
-                            pot.imprimirResultado();
+                            resultado=pot.res;
+                            break;
+                        default:
                             break;
                     }
-                } 
-            }
-    }
+                     i=i+2;
+                }
+              }
+    return resultado;
+    };
     
 }

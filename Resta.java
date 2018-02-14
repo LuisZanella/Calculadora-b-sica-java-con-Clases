@@ -12,6 +12,6 @@ package zcle_01;
 public class Resta extends Calculadora{
     public Resta(double n1, double n2){
         super(n1,n2,'-');
-        this.res=n1-n2+this.res;
+        this.res=n1-n2;
     }
 }

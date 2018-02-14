@@ -13,6 +13,6 @@ public class Suma extends Calculadora{
        public Suma(double n1,double n2)
         {
             super(n1,n2,'+');
-          this.res=n1+n2+this.res;
+          this.res=n1+n2;
         }
 }
